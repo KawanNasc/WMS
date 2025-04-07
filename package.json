@@ -9,10 +9,21 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/convergence": "^0.2.3",
+    "@expo-google-fonts/kadwa": "^0.2.3",
+    "@expo-google-fonts/odor-mean-chey": "^0.2.3",
+    "@expo-google-fonts/patua-one": "^0.3.0",
+    "@expo-google-fonts/pt-serif": "^0.2.3",
+    "@expo-google-fonts/rambla": "^0.2.3",
+    "@expo-google-fonts/shippori-antique": "^0.2.3",
+    "@expo-google-fonts/ubuntu": "^0.2.3",
+    "@react-navigation/native": "^7.1.4",
+    "@react-navigation/stack": "^7.2.8",
     "expo": "~52.0.35",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
-    "react-native": "0.76.7"
+    "react-native": "0.76.7",
+    "react-native-screens": "~4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
