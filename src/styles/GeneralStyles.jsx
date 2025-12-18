@@ -51,7 +51,7 @@ export const GeneralStylinzing = () => {
                 textAlign: 'center'
               },
             
-              btnobjt: { backgroundColor: '#2F22BA', borderRadius: 50, marginTop: 50, width: 350 },
+              btnobjt: {backgroundColor: '#2F22BA', borderRadius: 50, marginTop: 50, width: 350},
             
               btndesc: {
                 color: '#FDFFD4',
@@ -59,7 +59,11 @@ export const GeneralStylinzing = () => {
                 fontSize: 20,
                 padding: 20,
                 textAlign: 'center'
-              }
+              },
+
+              slideCounterCircle: {backgroundColor: '#73EAFF', borderRadius: 50, height: 20, width: 20},
+
+              slideCounterText: {fontSize: 20},
         })
     }
 }

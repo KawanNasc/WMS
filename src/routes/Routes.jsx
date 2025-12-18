@@ -6,6 +6,8 @@ import { Image } from 'react-native';
 import Intro from '../screens/Carousel/Intro';
 import Slide1 from '../screens/Carousel/Slide1';
 import Slide2 from '../screens/Carousel/Slide2';
+import Slide3 from '../screens/Carousel/Slide3';
+import Slide4 from '../screens/Carousel/Slide4';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +41,16 @@ export default function Routes() {
                 name="Slide2" 
                 component={Slide2}
                 options={{ title: 'WMS' }}
+            />
+            <Stack.Screen
+                name="Slide3"
+                component={Slide3}
+                options={{ title: 'WMS'}}
+            />
+            <Stack.Screen
+                name="Slide4"
+                component={Slide4}
+                options={{ title: 'WMS'}}
             />
         </Stack.Navigator>
     )

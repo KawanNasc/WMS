@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { GeneralStylinzing } from '../styles/GeneralStyles';
 import { useNavigation } from '@react-navigation/native';
 
@@ -29,7 +30,7 @@ export default function CustomBtn() {
   const handlePress = async () => {
     try {
       const newCount = count + 1;
-      if (newCount > 2) {
+      if (newCount > 4) {
         console.warn('Maximum slide reached. Resetting to Intro.');
         setCount(0); // Reset to Slide1 if count exceeds 2
         await AsyncStorage.setItem('buttonClickCount', '0'); // Save reset count
@@ -45,13 +46,18 @@ export default function CustomBtn() {
   };
 
   return (
-    <TouchableOpacity style={generalStyle.btnobjt} onPress={handlePress}>
-      <Text style={generalStyle.btndesc}>
-        Conheça o melhor aplicativo de gestão empresarial
-      </Text>
-      <Text style={{ marginTop: 10, textAlign: 'center', color: '#FFFFFF' }}>
-        Botão pressionado: {count} vezes
-      </Text>
-    </TouchableOpacity>
+    <View>
+      {count == 0 ? (
+        <TouchableOpacity style={generalStyle.btnobjt} onPress={handlePress}>
+          <Text style={generalStyle.btndesc}>
+            Conheça o melhor aplicativo de gestão comercial
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={[generalStyle.btnobjt, {height: 90, width: 90}]} onPress={handlePress}>
+          <AntDesign name="arrowright" style={[generalStyle.btndesc, {fontSize: 50}]} />
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
