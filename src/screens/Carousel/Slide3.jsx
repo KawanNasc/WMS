@@ -1,5 +1,7 @@
+import { View, Text, Image } from 'react-native';
+
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, View, Text, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { GeneralStylinzing } from '../../styles/GeneralStyles';
 

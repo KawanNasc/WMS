@@ -55,7 +55,7 @@ export default function CustomBtn() {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity style={[generalStyle.btnobjt, {height: 90, width: 90}]} onPress={handlePress}>
-          <AntDesign name="arrowright" style={[generalStyle.btndesc, {fontSize: 50}]} />
+          <AntDesign name="arrow-right" style={[generalStyle.btndesc, {fontSize: 50}]} />
         </TouchableOpacity>
       )}
     </View>
