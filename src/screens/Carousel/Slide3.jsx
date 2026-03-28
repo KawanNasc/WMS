@@ -25,8 +25,8 @@ export default function Slide3() {
             <View>
                 <Text>Tomada de decisões</Text>
                 <Text>O sistema, não somente participa no nível operacional, auxilia na orientação estratégica
-                    adotando métodos como o cross docking (Distributiva inteligência) e Ship from Store 
-                    (Chegadade estoques direta á loja).</Text>
+                    adotando métodos como o cross docking (Distributiva inteligência) e Ship from Store
+                    (Chegada de estoques direta á loja).</Text>
                 <Image></Image>
             </View>
 

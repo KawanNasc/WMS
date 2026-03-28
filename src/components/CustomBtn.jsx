@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { GeneralStylinzing } from '../styles/GeneralStyles';
-import { useNavigation } from '@react-navigation/native';
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BackHandler, View, TouchableOpacity, Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { GeneralStylinzing } from "../styles/GeneralStyles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CustomBtn() {
   const generalStyle = GeneralStylinzing();
   const navigation = useNavigation();
   const [count, setCount] = useState(0);
+  const [isBackBtnPressed, setIsBackBtnPressed] = useState(false);
 
   useEffect(() => {
     const loadCount = async () => {
       try {
-        const storedCount = await AsyncStorage.getItem('buttonClickCount');
+        const storedCount = await AsyncStorage.getItem("buttonClickCount");
         if (storedCount !== null) {
           const parsedCount = parseInt(storedCount, 10);
           if (!isNaN(parsedCount)) {
@@ -21,15 +22,32 @@ export default function CustomBtn() {
           }
         }
       } catch (error) {
-        console.error('Error loading count from AsyncStorage:', error);
+        console.error("Error loading count from AsyncStorage:", error);
       }
     };
     loadCount();
+
+    const backPopUp = () => {
+      setIsBackBtnPressed(true);
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backPopUp,
+    );
+
+    return () => backHandler.remove();
   }, []);
 
   const handlePress = async () => {
     try {
       const newCount = count + 1;
+
+      if (isBackBtnPressed) {
+        setCount(newCount - 1);
+        await AsyncStorage.setItem('buttonClickCount', newCount.toString()); // Save to AsyncStorage
+        navigation.navigate(`Slide${newCount}`);
+      }
       if (newCount > 4) {
         console.warn('Maximum slide reached. Resetting to Intro.');
         setCount(0); // Reset to Slide1 if count exceeds 2
@@ -40,8 +58,9 @@ export default function CustomBtn() {
       setCount(newCount);
       await AsyncStorage.setItem('buttonClickCount', newCount.toString()); // Save to AsyncStorage
       navigation.navigate(`Slide${newCount}`);
+      console.log(newCount);
     } catch (error) {
-      console.error('Error saving count to AsyncStorage:', error);
+      console.error("Error saving count to AsyncStorage:", error);
     }
   };
 
@@ -54,8 +73,14 @@ export default function CustomBtn() {
           </Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity style={[generalStyle.btnobjt, {height: 90, width: 90}]} onPress={handlePress}>
-          <AntDesign name="arrow-right" style={[generalStyle.btndesc, {fontSize: 50}]} />
+        <TouchableOpacity
+          style={[generalStyle.btnobjt, { height: 90, width: 90 }]}
+          onPress={handlePress}
+        >
+          <AntDesign
+            name="arrow-right"
+            style={[generalStyle.btndesc, { fontSize: 50 }]}
+          />
         </TouchableOpacity>
       )}
     </View>
